@@ -17,11 +17,11 @@ toDoInputButton.addEventListener('click', function(){ //callfunction?
 
 //function for adding string to list
 function addToList(){
+  let addText = document.createElement("list-item");
   let inputText = window.localStorage.getItem('text');
-  if (inputText === True){
-     
-  }else{
-  }
+
+  document.getElementById("items").innerHTML = inputText;
+  
 
 }
 
