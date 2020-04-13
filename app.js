@@ -4,25 +4,25 @@ window.onload = function(){
 const toDoInputButton = document.getElementById("input");
 
 toDoInputButton.addEventListener('click', function(){ //callfunction?
-  let text = window.localStorage.setItem('text', document.getElementById("text").value);
-  if (text === ""){
+  let text = window.localStorage.setItem('text', document.getElementById("text").value);  
+
+  if (text === " "){
     alert("please enter a item for the list");
   } else {
     addToList();
   }
-  console.log(text);
 })
 
 }
 
 //function for adding string to list
 function addToList(){
-  let addText = document.createElement("list-item");
-  let inputText = window.localStorage.getItem('text');
+  let inputFromText = window.localStorage.getItem('text');
+  let myList = document.getElementById('items');
+  let newListItem = document.createElement('li');
 
-  document.getElementById("items").innerHTML = inputText;
-  
-
+  newListItem.textContent = inputFromText;
+  myList.appendChild(newListItem);
 }
 
 
