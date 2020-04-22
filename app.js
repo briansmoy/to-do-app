@@ -8,7 +8,8 @@ Notes - add function and add button to allow onlick option for each element.
 window.onload = function(){
 
 const toDoInputButton = document.getElementById("input");
-const elementOnClick = document.getElementById("li");
+
+
 //gets input after submit button pressed
 toDoInputButton.addEventListener('click', function(){ //callfunction?
   let text = window.localStorage.setItem('text', document.getElementById("text").value);  
@@ -42,7 +43,12 @@ function addToList(){
 //create function for strikethrough change
 function itemComplete(){
   //if button is clicked add strikethrough task
-  var elementOnClick = document.getElementById('li');
+  const elementOnClick = document.getElementsByClassName("undone");
+
+  elementOnClick.addEventListener('click', function(){
+    elementOnClick.strike();
+  }
+  )
 
   if (elementOnClick.click == true){
     document.write(elementOnClick.strike);
