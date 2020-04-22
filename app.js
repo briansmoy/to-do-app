@@ -26,8 +26,16 @@ function addToList(){
   let inputFromText = window.localStorage.getItem('text');
   let myList = document.getElementById('items');
   let newListItem = document.createElement('li');
-//add for loop for additional attributes
+
   newListItem.textContent = inputFromText;
+  //add object.assign for additional attributes per element
+  Object.assign(newListItem, {
+    className: "undone",
+    id: "listed-item",
+  //  onclick: function() {
+  //    alert('Clicked')
+  //  }
+  })
   myList.appendChild(newListItem);
 }
 
