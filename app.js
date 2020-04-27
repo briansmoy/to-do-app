@@ -1,17 +1,10 @@
-/*
-Notes - add function and add button to allow onlick option for each element.
-*/
-
-
-
-
 window.onload = function(){
 
 const toDoInputButton = document.getElementById("input");
 
 
 //gets input after submit button pressed
-toDoInputButton.addEventListener('click', function(){ //callfunction?
+toDoInputButton.addEventListener('click', function(){
   let text = window.localStorage.setItem('text', document.getElementById("text").value);  
 
   if ('text' === " "){
@@ -33,27 +26,11 @@ function addToList(){
   Object.assign(newListItem, {
     className: "undone",
     id: "listed-item",
-  //  onclick: function() {
-  //    alert('Clicked')
-  //  }
+    onclick: function() {
+      document.write(inputFromText.strike());
+    }
   })
   myList.appendChild(newListItem);
-}
-
-//create function for strikethrough change
-function itemComplete(){
-  //if button is clicked add strikethrough task
-  const elementOnClick = document.getElementsByClassName("undone");
-
-  elementOnClick.addEventListener('click', function(){
-    elementOnClick.strike();
-  }
-  )
-
-  if (elementOnClick.click == true){
-    document.write(elementOnClick.strike);
-  }
-
 }
 
 //create function for deleting
