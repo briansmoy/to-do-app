@@ -2,7 +2,6 @@ window.onload = function(){
 
 const toDoInputButton = document.getElementById("input");
 
-
 //gets input after submit button pressed
 toDoInputButton.addEventListener('click', function(){
   let text = window.localStorage.setItem('text', document.getElementById("text").value);  
@@ -20,17 +19,28 @@ function addToList(){
   let inputFromText = window.localStorage.getItem('text');
   let myList = document.getElementById('items');
   let newListItem = document.createElement('li');
+  newListItem.className = "undone";
+  newListItem.type = "checkbox";
 
+  newListItem.addEventListener('click', function(e) {
+    newListItem.innerHTML = inputFromText.strike();
+  }) 
+//if checkbox is checked
+//go to remove list function
   newListItem.textContent = inputFromText;
-  //add object.assign for additional attributes per element
-  Object.assign(newListItem, {
-    className: "undone",
-    id: "listed-item",
-    onclick: function() {
-      document.write(inputFromText.strike());
-    }
-  })
   myList.appendChild(newListItem);
 }
 
 //create function for deleting
+function removeFromList(){
+let removeListItem = window.localStorage.removeItem()
+document.getElementsByClassName("undone").addEventListener('click') = function() {
+  if (checkbox.check) {
+    removeListItem;
+  }
+  else{
+  }
+}
+}
+//add html for box or checkbox
+//if checkbox if checked do this
