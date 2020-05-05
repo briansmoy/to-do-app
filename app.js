@@ -6,7 +6,7 @@ const toDoInputButton = document.getElementById("input");
 toDoInputButton.addEventListener('click', function(){
   let text = window.localStorage.setItem('text', document.getElementById("text").value);  
 
-  if ('text' === " "){
+  if ('text' === ""){
     alert("please enter a item for the list");
   } else {
     addToList();
@@ -19,44 +19,41 @@ function addToList(){
   let inputFromText = window.localStorage.getItem('text');
   let myList = document.getElementById('items');
   let newListItem = document.createElement('li');
+  let listItemTest = document.getElementById('undone');
   let newCheckBox = document.createElement('input');
 
-  newListItem.className = "undone";
-  newCheckBox.type = "checkbox"
-  newCheckBox.value = 1;
+
+  newListItem.id = "undone";
+  newCheckBox.type = "checkbox";
+  newCheckBox.innerText = "X";
+  
+  //listItemTest.insertAdjacentHTML("afterend",
+  //'<button type="checkbox">x</button>');
+ 
 
   newListItem.addEventListener('click', function(e) {
     newListItem.style.textDecoration = 'line-through';
-    //newListItem.innerHTML =  inputFromText.strike();
-    console.log('ifstatement hit');
+    console.log('click event hit');
     })
+  
 
-    /* newListItem.click && newListItem.innerHTML == inputFromText.strike()){
-    
-    newListItem.addEventListener('click', function(e) {
-      newListItem.innerHTML = inputFromText.big();
-      console.log("elseif HIT");
-      })
-    */
- 
-  
-  
-  
-  
-//if checkbox is checked
-//go to remove list function
   newListItem.textContent = inputFromText;
   myList.appendChild(newListItem);
   newListItem.appendChild(newCheckBox);
-  //myList.appendChild(inputListItem);
+  //newCheckBox.insertAfter(newListItem);
+
+
+  
+  
 }
 
+/*
 //create function for deleting
 function removeFromList(){
 let removeListItem = window.localStorage.removeItem()
 document.getElementsByClassName("undone").addEventListener('click') = function() {
   if (checkbox.check) {
-    removeListItem;
+    //removeListItem;
   }
   else{
   }
@@ -64,3 +61,4 @@ document.getElementsByClassName("undone").addEventListener('click') = function()
 }
 //add html for box or checkbox
 //if checkbox if checked do
+*/
