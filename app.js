@@ -19,45 +19,55 @@ function addToList(){
   let inputFromText = window.localStorage.getItem('text');
   let myList = document.getElementById('items');
   let newListItem = document.createElement('li');
-  let listItemTest = document.getElementById('undone');
-  let newCheckBox = document.createElement('input');
-
+  let newCheckBox = document.createElement('button');
+  let removeListItem = window.localStorage.removeItem(inputFromText.lastChild);
 
   newListItem.id = "undone";
   newCheckBox.type = "checkbox";
+  newCheckBox.className = "box-click";
   newCheckBox.innerText = "X";
   
-  //listItemTest.insertAdjacentHTML("afterend",
+  //listItemTest.insertAdjacentHTML("beforeend",
+  //'<li id="undone">${inputFromText}</li>',
   //'<button type="checkbox">x</button>');
  
-
   newListItem.addEventListener('click', function(e) {
     newListItem.style.textDecoration = 'line-through';
+    newListItem.id = "done";
     console.log('click event hit');
-    })
+    });
+
+  newCheckBox.addEventListener('click', function(){
+    removeListItem;
+    console.log(inputFromText);
+  }
+  );
   
 
   newListItem.textContent = inputFromText;
   myList.appendChild(newListItem);
-  newListItem.appendChild(newCheckBox);
+  myList.appendChild(newCheckBox);
   //newCheckBox.insertAfter(newListItem);
-
-
-  
+  //newCheckBox.nextSibling(newListItem)
   
 }
-
 /*
 //create function for deleting
 function removeFromList(){
-let removeListItem = window.localStorage.removeItem()
-document.getElementsByClassName("undone").addEventListener('click') = function() {
-  if (checkbox.check) {
+  let checkBoxClick = document.getElementsByClassName('box-click');
+  //let removeListItem = window.localStorage.removeItem();
+
+  checkBoxClick.addEventListener('click', function(){
+    console.log('box event hit');
+
+  });
+  //document.getElementsByClassName("done").addEventListener('click') = function() {
+  //if (checkbox.check) {
     //removeListItem;
-  }
-  else{
-  }
-}
+  //}
+  //else{
+  //}
+//}
 }
 //add html for box or checkbox
 //if checkbox if checked do
