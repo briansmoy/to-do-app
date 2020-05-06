@@ -19,6 +19,7 @@ function addToList(){
   let inputFromText = window.localStorage.getItem('text');
   let myList = document.getElementById('items');
   let newListItem = document.createElement('li');
+  let addSpanList = document.createElement('span');
   let newCheckBox = document.createElement('button');
   let removeListItem = window.localStorage.removeItem(inputFromText.lastChild);
 
@@ -31,26 +32,34 @@ function addToList(){
   //'<li id="undone">${inputFromText}</li>',
   //'<button type="checkbox">x</button>');
  
-  newListItem.addEventListener('click', function(e) {
-    newListItem.style.textDecoration = 'line-through';
+//strike through item
+  addSpanList.addEventListener('click', function(e) {
+    addSpanList.style.textDecoration = 'line-through';
     newListItem.id = "done";
-    console.log('click event hit');
+    console.log('click event hit', inputFromText);
     });
 
+//removal of item
   newCheckBox.addEventListener('click', function(){
     removeListItem;
     console.log(inputFromText);
-  }
-  );
+  });
   
-
-  newListItem.textContent = inputFromText;
+  addSpanList.textContent = inputFromText;
   myList.appendChild(newListItem);
-  myList.appendChild(newCheckBox);
+  newListItem.appendChild(addSpanList);
+  newListItem.appendChild(newCheckBox);
+  
+  //myList.appendChild(newCheckBox);
+
+  //save for later - if I can get string item to just
+  //have strike through
+  
   //newCheckBox.insertAfter(newListItem);
   //newCheckBox.nextSibling(newListItem)
   
 }
+
 /*
 //create function for deleting
 function removeFromList(){
