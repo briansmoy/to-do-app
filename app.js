@@ -4,19 +4,18 @@ const toDoInputButton = document.getElementById("input");
 const toDoEnterButton = document.getElementById("input");
 //testing section
 toDoInputButton.addEventListener('click', eventHandle);
-toDoEnterButton.addEventListener('click', eventHandle);
+toDoEnterButton.addEventListener('keypress', eventHandle);
 
 }
 
 function eventHandle(e){
   let text = window.localStorage.setItem('text', document.getElementById('text').value);
-/*
+
   if (e.keyCode === 13){
     console.log("if statement hit")
   }
-*/
+
   if (document.getElementById("text").value == 0 || document.getElementById("text").value == null){
-    console.log(e.keyCode);
     alert("Please enter a item for the list");
   } else {
     addToList();
