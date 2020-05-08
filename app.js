@@ -10,12 +10,13 @@ toDoEnterButton.addEventListener('click', eventHandle);
 
 function eventHandle(e){
   let text = window.localStorage.setItem('text', document.getElementById('text').value);
-
+/*
   if (e.keyCode === 13){
     console.log("if statement hit")
   }
-
+*/
   if (document.getElementById("text").value == 0 || document.getElementById("text").value == null){
+    console.log(e.keyCode);
     alert("Please enter a item for the list");
   } else {
     addToList();
