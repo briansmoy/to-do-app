@@ -54,30 +54,3 @@ function addToList(){
   newListItem.appendChild(addSpanList);
   newListItem.appendChild(newCheckBox);
 };
-
-
-
-//Questions
-//Could I have used insertAdjacentHTML instead of using createElement?
-//Variable list is quite long, anyway that I could have shortened it?
-
-
-//Learned
-//InnerHTML overwrote my checkbox - had to convert to another
-//way of getting strike through. 
-
-
-/*
-//gets input after click event -  does works
-toDoInputButton.addEventListener('click', function(){
-  let onClick = window.localStorage.setItem('text', document.getElementById("text").value);  
-
-  if (document.getElementById("text").value == 0 || document.getElementById("text").value == null){
-    alert("Please enter a item for the list");
-  } else {
-    addToList();
-  }
-})
-*/
-
-
