@@ -6,11 +6,12 @@ window.onload = function(){
 
   const toDoInputButton = document.getElementById("input");
   const textInput = document.getElementById("text");
-  //testing section
+
   toDoInputButton.addEventListener('click', eventHandle);
   textInput.addEventListener('keydown', function(e){
     if (e.keyCode === 13) {
       eventHandle();
+      
     }
   })
 }
@@ -40,8 +41,11 @@ function addToList(){
 
 //strike through item
   addSpanList.addEventListener('click', function(e) {
-    addSpanList.style.textDecoration = 'line-through';
-    newListItem.id = "done";
+    if(addSpanList.style.textDecoration !== 'line-through'){
+      addSpanList.style.textDecoration = 'line-through';
+    }else if(addSpanList.style.textDecoration == 'line-through'){
+      addSpanList.removeAttribute('style');
+    }
   });
 
 //removal of item
