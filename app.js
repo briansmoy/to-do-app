@@ -1,40 +1,29 @@
+
+
+
+
 window.onload = function(){
 
-const toDoInputButton = document.getElementById("input");
-const toDoEnterButton = document.getElementById("input");
-//testing section
-toDoInputButton.addEventListener('click', eventHandle);
-toDoEnterButton.addEventListener('keypress', eventHandle);
-
+  const toDoInputButton = document.getElementById("input");
+  const textInput = document.getElementById("text");
+  //testing section
+  toDoInputButton.addEventListener('click', eventHandle);
+  textInput.addEventListener('keydown', function(e){
+    if (e.keyCode === 13) {
+      eventHandle();
+    }
+  })
 }
 
-function eventHandle(e){
+function eventHandle(){
   let text = window.localStorage.setItem('text', document.getElementById('text').value);
 
-  if (e.keyCode === 13){
-    console.log("if statement hit")
-  }
-
   if (document.getElementById("text").value == 0 || document.getElementById("text").value == null){
     alert("Please enter a item for the list");
   } else {
     addToList();
   }
 }
-/*
-//gets input after click event -  does works
-toDoInputButton.addEventListener('click', function(){
-  let onClick = window.localStorage.setItem('text', document.getElementById("text").value);  
-
-  if (document.getElementById("text").value == 0 || document.getElementById("text").value == null){
-    alert("Please enter a item for the list");
-  } else {
-    addToList();
-  }
-})
-*/
-
-
 
 //function for adding/remove string to list
 function addToList(){
@@ -76,3 +65,19 @@ function addToList(){
 //Learned
 //InnerHTML overwrote my checkbox - had to convert to another
 //way of getting strike through. 
+
+
+/*
+//gets input after click event -  does works
+toDoInputButton.addEventListener('click', function(){
+  let onClick = window.localStorage.setItem('text', document.getElementById("text").value);  
+
+  if (document.getElementById("text").value == 0 || document.getElementById("text").value == null){
+    alert("Please enter a item for the list");
+  } else {
+    addToList();
+  }
+})
+*/
+
+
