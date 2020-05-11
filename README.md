@@ -4,7 +4,7 @@ Basic easy to use To Do App in HTML, Javascript and CSS
 
 See it <a href="https://briansmoy.github.io/to-do-app/" rel="nofollow">here</a>
 
-The instructions:
+The instructions:<br>
 Enter an item in the input box and click on submit or enter to add it to the list.
 
 Once the task is completed you can click on the item on the list to put a strike through, if it was a mistake you can click on it again 
