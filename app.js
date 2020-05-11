@@ -1,9 +1,4 @@
-
-
-
-
 window.onload = function(){
-
   const toDoInputButton = document.getElementById("input");
   const textInput = document.getElementById("text");
 
@@ -18,6 +13,7 @@ window.onload = function(){
 function eventHandle() {
   let text = window.localStorage.setItem('text', document.getElementById('text').value);
   let clearInput = document.getElementById("text");
+
   if (document.getElementById("text").value == 0 || document.getElementById("text").value == null) {
     alert("Please enter a item for the list");
   } else {
