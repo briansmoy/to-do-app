@@ -2,7 +2,7 @@
 
 Basic easy to use To Do App in HTML, Javascript and CSS
 
-See it here
+See it <a href="https://briansmoy.github.io/to-do-app/" rel="nofollow">here</a>
 
 The instructions:
 Enter an item in the input box and click on submit or enter to add it to the list.
