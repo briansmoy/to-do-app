@@ -10,18 +10,18 @@ window.onload = function(){
   toDoInputButton.addEventListener('click', eventHandle);
   textInput.addEventListener('keydown', function(e){
     if (e.keyCode === 13) {
-      eventHandle();
-      
+      eventHandle();     
     }
   })
 }
 
-function eventHandle(){
+function eventHandle() {
   let text = window.localStorage.setItem('text', document.getElementById('text').value);
-
-  if (document.getElementById("text").value == 0 || document.getElementById("text").value == null){
+  let clearInput = document.getElementById("text");
+  if (document.getElementById("text").value == 0 || document.getElementById("text").value == null) {
     alert("Please enter a item for the list");
   } else {
+    clearInput.value = '';
     addToList();
   }
 }
@@ -40,10 +40,10 @@ function addToList(){
   newCheckBox.innerText = "X";
 
 //strike through item
-  addSpanList.addEventListener('click', function(e) {
-    if(addSpanList.style.textDecoration !== 'line-through'){
+  addSpanList.addEventListener('click', function (e) {
+    if (addSpanList.style.textDecoration !== 'line-through') {
       addSpanList.style.textDecoration = 'line-through';
-    }else if(addSpanList.style.textDecoration == 'line-through'){
+    } else if (addSpanList.style.textDecoration == 'line-through') {
       addSpanList.removeAttribute('style');
     }
   });
