@@ -1,56 +1,117 @@
 window.onload = function(){
+  let savedToDoItems = localStorage.getItem('todo-items');
+  if (savedToDoItems === null) {
+    savedToDoItems = [];
+  } else {
+    savedToDoItems = JSON.parse(savedToDoItems);
+  }
+  for (let i = 0; i < savedToDoItems.length; i++) {
+    const toDoItem = savedToDoItems[i];
+    renderToDoItem(toDoItem); 
+  }
+  
+  //click event
   const toDoInputButton = document.getElementById("input");
-  const textInput = document.getElementById("text");
+  toDoInputButton.addEventListener('click', function(e) {
+      addNewItemToList();
+  });
 
-  toDoInputButton.addEventListener('click', eventHandle);
+  //keystroke
+  const textInput = document.getElementById("text");
   textInput.addEventListener('keydown', function(e){
     if (e.keyCode === 13) {
-      eventHandle();     
+      addNewItemToList();
     }
-  })
-}
+  });
+};
 
-function eventHandle() {
-  let text = window.localStorage.setItem('text', document.getElementById('text').value);
-  let clearInput = document.getElementById("text");
-
-  if (document.getElementById("text").value == 0 || document.getElementById("text").value == null) {
-    alert("Please enter a item for the list");
+function addNewItemToList() {
+  if (inputTextIsInvalid()) {
+    showInvalidAlertText();
   } else {
-    clearInput.value = '';
-    addToList();
+    const toDoItem = {
+      id: new Date().getTime * Math.random(),
+      text: document.getElementById('text').value,
+      isComplete: false,
+    };
+
+    //save item in  array in local storage
+    let savedToDoItems = localStorage.getItem('todo-items');
+    if (savedToDoItems === null) {
+      savedToDoItems = [];
+    } else {
+      savedToDoItems = JSON.parse(savedToDoItems);
+    }
+    savedToDoItems.push(toDoItem);
+    localStorage.setItem('todo-items', JSON.stringify(savedToDoItems));
+
+    renderToDoItem(toDoItem);
+    document.getElementById("text").value;
   }
 }
 
-//function for adding/remove string to list
-function addToList(){
-  let inputFromText = window.localStorage.getItem('text');
-  let myList = document.getElementById('items');
-  let newListItem = document.createElement('li');
-  let addSpanList = document.createElement('span');
-  let newCheckBox = document.createElement('button');
- 
-  newListItem.id = "undone";
-  newCheckBox.type = "checkbox";
-  newCheckBox.className = "box-click";
-  newCheckBox.innerText = "X";
+function inputTextIsInvalid() {
+  return document.getElementById("text").value == 0 || document.getElementById("text").value == null
+}
 
-//strike through item
+function showInvalidAlertText(){
+  alert("Please enter a item for the list");
+}
+
+//function for adding/remove string to list
+function renderToDoItem(toDoItemObject){
+  //let textFromLocalStorage = window.localStorage.getItem('text');
+
+  let unorderedListElement = document.getElementById('items');
+  
+  let listItemElement = document.createElement('li');
+  listItemElement.id = "undone";
+
+  unorderedListElement.appendChild(listItemElement); 
+
+  let addSpanList = document.createElement('span');
+  addSpanList.textContent = toDoItemObject.text;
+  if(toDoItemObject.isComplete === true){
+    addSpanList.style.textDecoration = 'line-through';
+  }
+  //strike through item
   addSpanList.addEventListener('click', function (e) {
+    //get items from local storage
+    let savedToDoItems = localStorage.getItem('todo-items');
+    if (savedToDoItems === null) {
+      savedToDoItems = [];
+    } else {
+      savedToDoItems = JSON.parse(savedToDoItems);
+    }
+    //find the item to change the iscomplete prop
+    const updatedSavedItems = savedToDoItems.map(function(savedToDoItemObject){
+      if(savedToDoItemObject.id === toDoItemObject.id) {
+        savedToDoItemObject.isComplete = !savedToDoItemObject.isComplete;
+        
+      }
+      return savedToDoItemObject
+    })
+    //resave items back into list
+    localStorage.setItem('todo-items', JSON.stringify(updatedSavedItems));
+
     if (addSpanList.style.textDecoration !== 'line-through') {
       addSpanList.style.textDecoration = 'line-through';
     } else if (addSpanList.style.textDecoration == 'line-through') {
       addSpanList.removeAttribute('style');
     }
   });
+  listItemElement.appendChild(addSpanList);
 
-//removal of item
-  newCheckBox.addEventListener('click', function(){
-    newListItem.remove();
+  let checkBoxElement = document.createElement('button');
+  checkBoxElement.type = "checkbox";
+  checkBoxElement.className = "box-click";
+  checkBoxElement.innerText = "X"; 
+  //removal of item
+  checkBoxElement.addEventListener('click', function(){
+    //get the items back from local storage
+    //remove the item from the array that matches the item to delete (.filter())
+    //re-save the items back into local storage
+    listItemElement.remove();
   });
-  
-  addSpanList.textContent = inputFromText;
-  myList.appendChild(newListItem);
-  newListItem.appendChild(addSpanList);
-  newListItem.appendChild(newCheckBox);
+  listItemElement.appendChild(checkBoxElement);
 };

@@ -20,4 +20,4 @@ It was worth every minute I put my time into it.
 
 <h2>Author</h2>
 
---<strong>Brian Moy</strong> - Inspiring Software Developer - <a href="https://www.linkedin.com/in/bsmoy/" rel="nofollow">LinkedIn</a>
+--<strong>Brian Moy</strong> - Inspiried Software Developer - <a href="https://www.linkedin.com/in/bsmoy/" rel="nofollow">LinkedIn</a>
