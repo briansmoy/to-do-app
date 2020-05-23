@@ -108,7 +108,7 @@ function renderToDoItem(toDoItemObject){
   checkBoxElement.innerText = "X"; 
   //removal of item
   checkBoxElement.addEventListener('click', function(){
-    //get the items back from local storage
+    //get the items back from localstorage
     //remove the item from the array that matches the item to delete (.filter())
     //re-save the items back into local storage
     listItemElement.remove();
