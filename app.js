@@ -30,10 +30,11 @@ function addNewItemToList() {
     showInvalidAlertText();
   } else {
     const toDoItem = {
-      id: new Date().getTime * Math.random(),
+      id: new Date().getTime() * Math.random(),
       text: document.getElementById('text').value,
-      isComplete: false,
+      isComplete: false
     };
+    console.log(toDoItem)
 
     //save item in  array in local storage
     let savedToDoItems = localStorage.getItem('todo-items');
@@ -46,7 +47,7 @@ function addNewItemToList() {
     localStorage.setItem('todo-items', JSON.stringify(savedToDoItems));
 
     renderToDoItem(toDoItem);
-    document.getElementById("text").value;
+    document.getElementById("text").value = '';
   }
 }
 
@@ -87,9 +88,8 @@ function renderToDoItem(toDoItemObject){
     const updatedSavedItems = savedToDoItems.map(function(savedToDoItemObject){
       if(savedToDoItemObject.id === toDoItemObject.id) {
         savedToDoItemObject.isComplete = !savedToDoItemObject.isComplete;
-        
       }
-      return savedToDoItemObject
+      return savedToDoItemObject;
     })
     //resave items back into list
     localStorage.setItem('todo-items', JSON.stringify(updatedSavedItems));
@@ -108,10 +108,21 @@ function renderToDoItem(toDoItemObject){
   checkBoxElement.innerText = "X"; 
   //removal of item
   checkBoxElement.addEventListener('click', function(){
+    
     //get the items back from localstorage
+    let savedToDoItems = localStorage.getItem('todo-items');
+    if (savedToDoItems === null) {
+      savedToDoItems = [];
+    } else {
+      savedToDoItems = JSON.parse(savedToDoItems);
+    }
     //remove the item from the array that matches the item to delete (.filter())
+    const removeSavedItem = savedToDoItems.filter(function(removeToDoItemObject) {
+      return removeToDoItemObject.id;
+      
+    } );
     //re-save the items back into local storage
-    listItemElement.remove();
+    listItemElement.remove(removeSavedItem);
   });
   listItemElement.appendChild(checkBoxElement);
 };
