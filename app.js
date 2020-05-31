@@ -108,7 +108,6 @@ function renderToDoItem(toDoItemObject){
   listItemElement.appendChild(checkBoxElement);
   //removal of item
   checkBoxElement.addEventListener('click', function () {
-
     //get the items back from localstorage
     let savedToDoItems = localStorage.getItem('todo-items');
     if (savedToDoItems === null) {
@@ -116,15 +115,15 @@ function renderToDoItem(toDoItemObject){
     } else {
       savedToDoItems = JSON.parse(savedToDoItems);
     }
-    //remove the item from the array that matches the item to delete (.filter())
+    //remove the item from the array
     const removeSavedItem = savedToDoItems.filter(function (removeSavedItemObject) {
-      if (removeSavedItemObject.id === toDoItemObject) {
-
-        return toDoItemObject;
-      }
+      if (toDoItemObject.id !== removeSavedItemObject.id) {
+        return removeSavedItemObject;
+      };
     });
     //re-save the items back into local storage
     localStorage.setItem('todo-items', JSON.stringify(removeSavedItem));
+    //remove element associated with item
     listItemElement.remove(savedToDoItems);
   });
 };
