@@ -34,8 +34,7 @@ function addNewItemToList() {
       text: document.getElementById('text').value,
       isComplete: false
     };
-    console.log(toDoItem)
-
+    
     //save item in  array in local storage
     let savedToDoItems = localStorage.getItem('todo-items');
     if (savedToDoItems === null) {
@@ -106,9 +105,10 @@ function renderToDoItem(toDoItemObject){
   checkBoxElement.type = "checkbox";
   checkBoxElement.className = "box-click";
   checkBoxElement.innerText = "X"; 
+  listItemElement.appendChild(checkBoxElement);
   //removal of item
-  checkBoxElement.addEventListener('click', function(){
-    
+  checkBoxElement.addEventListener('click', function () {
+
     //get the items back from localstorage
     let savedToDoItems = localStorage.getItem('todo-items');
     if (savedToDoItems === null) {
@@ -117,12 +117,14 @@ function renderToDoItem(toDoItemObject){
       savedToDoItems = JSON.parse(savedToDoItems);
     }
     //remove the item from the array that matches the item to delete (.filter())
-    const removeSavedItem = savedToDoItems.filter(function(removeToDoItemObject) {
-      return removeToDoItemObject.id;
-      
-    } );
+    const removeSavedItem = savedToDoItems.filter(function (removeSavedItemObject) {
+      if (removeSavedItemObject.id === toDoItemObject) {
+
+        return toDoItemObject;
+      }
+    });
     //re-save the items back into local storage
-    listItemElement.remove(removeSavedItem);
+    localStorage.setItem('todo-items', JSON.stringify(removeSavedItem));
+    listItemElement.remove(savedToDoItems);
   });
-  listItemElement.appendChild(checkBoxElement);
 };
