@@ -60,8 +60,6 @@ function showInvalidAlertText(){
 
 //function for adding/remove string to list
 function renderToDoItem(toDoItemObject){
-  //let textFromLocalStorage = window.localStorage.getItem('text');
-
   let unorderedListElement = document.getElementById('items');
   
   let listItemElement = document.createElement('li');
